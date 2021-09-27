@@ -1,5 +1,7 @@
 
 enablePlugins(ScalaJSPlugin)
+enablePlugins(JSDependenciesPlugin)
+enablePlugins(ScalaJSBundlerPlugin)
 
 name := "MyFirstScalaJS"
 
@@ -16,3 +18,8 @@ jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
 
 libraryDependencies += "com.lihaoyi" %%% "utest" % "0.7.4" % "test"
 testFrameworks += new TestFramework("utest.runner.Framework")
+
+scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+
+Compile / npmDependencies  += "chart.js" -> "3.5.1"
+
